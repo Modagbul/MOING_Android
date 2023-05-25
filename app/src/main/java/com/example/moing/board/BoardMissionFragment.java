@@ -10,6 +10,7 @@ import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -18,12 +19,15 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
 import com.example.moing.MissionCreateActivity;
 import com.example.moing.MissionListAdapter;
 import com.example.moing.NoticeViewAdapter;
@@ -33,10 +37,15 @@ import com.example.moing.Response.AllNoticeResponse;
 import com.example.moing.Response.BoardMoimResponse;
 import com.example.moing.Response.BoardNoReadNoticeResponse;
 import com.example.moing.Response.MissionListResponse;
+import com.example.moing.Response.MoimMasterResponse;
+import com.example.moing.Response.MyPageResponse;
 import com.example.moing.mission.MissionClickActivity;
+import com.example.moing.mypage.MyPageTeamAdatper;
 import com.example.moing.retrofit.ChangeJwt;
 import com.example.moing.retrofit.RetrofitAPI;
 import com.example.moing.retrofit.RetrofitClientJwt;
+import com.example.moing.s3.DownloadImageCallback;
+import com.example.moing.s3.S3Utils;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -67,6 +76,7 @@ public class BoardMissionFragment extends Fragment {
     ImageView createBtn;
 
     private Call<MissionListResponse> call;
+    private Call<MoimMasterResponse> call2;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -88,15 +98,28 @@ public class BoardMissionFragment extends Fragment {
         mRecyclerView.setLayoutManager(linearLayoutManager);
 
         createBtn = view.findViewById(R.id.mission_create_btn);
+//        createBtn.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Intent intent = new Intent(requireContext(), MissionCreateActivity.class);
+//                intent.putExtra("teamId", teamId);
+//                startActivity(intent);
+//            }
+//        });
+
+
         createBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(requireContext(), MissionCreateActivity.class);
-                intent.putExtra("teamId", teamId);
-                startActivity(intent);
+                // 임시로 가정된 API와의 통신하여 소모임장 여부 확인
+                checkIsMoimMaster();
             }
-        });
+            });
 
+        // 초대 코드 팝업 다이얼로그 - 불가능
+        inviteDialogImpossible = new Dialog(getContext());
+        inviteDialogImpossible.requestWindowFeature(Window.FEATURE_NO_TITLE); // 타이틀 제거
+        inviteDialogImpossible.setContentView(R.layout.fragment_board_invite_code_impossible); // xml 레이아웃 파일 연결
 
         /** 공지사항 **/
         MissionList();
@@ -118,9 +141,71 @@ public class BoardMissionFragment extends Fragment {
         MissionList();
     }
 
-    /**
-     * 미션 리스트 출력 API
-     **/
+    private void checkIsMoimMaster() {
+        // Token 을 가져오기 위한 SharedPreferences Token
+        sharedPreferences = requireContext().getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE);
+        String jwtAccessToken = sharedPreferences.getString(JWT_ACCESS_TOKEN, null);
+        Log.d(TAG, jwtAccessToken);
+
+
+        RetrofitAPI apiService = RetrofitClientJwt.getApiService(jwtAccessToken);
+        apiService = RetrofitClientJwt.getApiService(jwtAccessToken);
+        call2 = apiService.checkIsMoimMaster(jwtAccessToken, teamId);
+
+        call2.enqueue(new Callback<MoimMasterResponse>() {
+            @Override
+            public void onResponse(@NonNull Call<MoimMasterResponse> call, @NonNull Response<MoimMasterResponse> response) {
+                if (response.isSuccessful()) {
+                    if (response.body() != null) {
+                        MoimMasterResponse masterResponse = response.body();
+                        if (masterResponse.isMoimMaster()) {
+                            // 소모임장인 경우
+                            Intent intent = new Intent(requireContext(), MissionCreateActivity.class);
+                            intent.putExtra("teamId", teamId);
+                            startActivity(intent);
+                        } else {
+                            // 소모임장이 아닌 경우
+                            showInviteDialogImpossible();
+                        }
+                    }
+                } else {
+                    try {
+                        /** 작성자가 아닌 경우 **/
+                        String errorJson = response.errorBody().string();
+                        JSONObject errorObject = new JSONObject(errorJson);
+                        // 에러 코드로 에러처리를 하고 싶을 때
+                        // String errorCode = errorObject.getString("errorCode");
+                        /** 메세지로 에러처리를 구분 **/
+                        String message = errorObject.getString("message");
+
+                        if (message.equals("소모임장이 아니어서 할 수 없습니다.")) {
+                            showInviteDialogImpossible();
+                        } else if (message.equals("만료된 토큰입니다.")) {
+                            ChangeJwt.updateJwtToken(getContext());
+                            checkIsMoimMaster();
+                        }
+
+                    } catch (IOException e) {
+                        // 에러 응답의 JSON 문자열을 읽을 수 없을 때
+                        e.printStackTrace();
+                    } catch (JSONException e) {
+                        // JSON 객체에서 필드 추출에 실패했을 때
+                        e.printStackTrace();
+                    }
+                }
+            }
+
+            @Override
+            public void onFailure(@NonNull Call<MoimMasterResponse> call, @NonNull Throwable t) {
+                // 응답 실패
+                Log.d(TAG, "마이페이지 조회 실패");
+            }
+        });
+    }
+
+        /**
+         * 미션 리스트 출력 API
+         **/
     public void MissionList() {
         String accessToken = sharedPreferences.getString(JWT_ACCESS_TOKEN, null); // 액세스 토큰 검색
         apiService = RetrofitClientJwt.getApiService(accessToken);

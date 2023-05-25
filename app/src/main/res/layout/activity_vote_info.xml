@@ -300,43 +300,5 @@
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>
     <!-- 댓글 작성 부분 -->
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
-        android:layout_height="64dp"
-        android:background="@color/secondary_grey_black_13"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent">
-
-        <EditText
-            android:id="@+id/et_comment"
-            android:layout_width="310dp"
-            android:layout_height="50dp"
-            android:layout_marginHorizontal="16dp"
-            android:background="@drawable/layout_round_black10"
-            android:fontFamily="@font/pretendard_medium"
-            android:hint="댓글을 작성해주세요"
-            android:paddingLeft="16dp"
-            android:textColor="@color/secondary_grey_black_3"
-            android:textColorHint="@color/secondary_grey_black_7"
-            android:textSize="18dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/imgbtn_send"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <ImageButton
-            android:id="@+id/imgbtn_send"
-            android:layout_width="28dp"
-            android:layout_height="28dp"
-            android:layout_alignParentEnd="true"
-            android:layout_centerVertical="true"
-            android:layout_marginRight="25dp"
-            android:background="@android:color/transparent"
-            android:src="@drawable/ic_send"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

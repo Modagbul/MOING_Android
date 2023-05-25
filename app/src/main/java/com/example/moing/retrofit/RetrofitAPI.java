@@ -24,6 +24,7 @@ import com.example.moing.Response.BoardMoimResponse;
 import com.example.moing.Response.BoardNoReadNoticeResponse;
 import com.example.moing.Response.BoardNoReadVoteResponse;
 import com.example.moing.Response.BoardVoteCommentResponse;
+import com.example.moing.Response.MoimMasterResponse;
 import com.example.moing.Response.NoticeVoteFinishResponse;
 import com.example.moing.Response.BoardVoteInfoResponse;
 import com.example.moing.Response.BoardVoteMakeCommentResponse;
@@ -255,4 +256,7 @@ public interface RetrofitAPI {
     @PUT("api/v1/{teamId}/missions/{missionId}")
     Call<MissionUpdateResponse> putMissionUpdate(@Header("Authorization") String token, @Path("teamId") Long teamId, @Path("missionId") Long missionId, @Body MissionUpdateRequest missionUpdateRequest);
 
+    /** 리더 상태 조회 **/
+    @GET("/api/v1/{teamId}/missions/isLeader")
+    Call<MoimMasterResponse> checkIsMoimMaster(@Header("Authorization") String token, @Path("teamId") Long teamId);
 }
