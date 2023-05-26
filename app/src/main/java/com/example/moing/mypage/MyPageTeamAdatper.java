@@ -17,7 +17,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
 import com.example.moing.R;
-import com.example.moing.Response.MyPageResponse;
+import com.example.moing.response.MyPageResponse;
 import com.example.moing.s3.DownloadImageCallback;
 import com.example.moing.s3.S3Utils;
 

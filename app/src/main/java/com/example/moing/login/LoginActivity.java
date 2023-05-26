@@ -11,18 +11,11 @@ import android.widget.ImageView;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.moing.MainActivity;
-import com.example.moing.NoticeInfoActivity;
 import com.example.moing.R;
-import com.example.moing.Request.ChangeJwtRequest;
-import com.example.moing.Request.LoginRequest;
-import com.example.moing.Response.ChangeJwtResponse;
-import com.example.moing.Response.CheckAdditionalInfo;
-import com.example.moing.Response.LoginResponse;
-import com.example.moing.board.BoardActivity;
-import com.example.moing.retrofit.ChangeJwt;
+import com.example.moing.request.LoginRequest;
+import com.example.moing.response.LoginResponse;
 import com.example.moing.retrofit.RetrofitAPI;
 import com.example.moing.retrofit.RetrofitClient;
-import com.example.moing.retrofit.RetrofitClientJwt;
 import com.kakao.sdk.user.UserApiClient;
 
 import retrofit2.Call;

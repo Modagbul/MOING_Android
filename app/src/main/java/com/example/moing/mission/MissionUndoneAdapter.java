@@ -16,12 +16,11 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
 import com.example.moing.R;
-import com.example.moing.Response.MissionStatusListResponse;
+import com.example.moing.response.MissionStatusListResponse;
 import com.example.moing.s3.DownloadImageCallback;
 import com.example.moing.s3.S3Utils;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 

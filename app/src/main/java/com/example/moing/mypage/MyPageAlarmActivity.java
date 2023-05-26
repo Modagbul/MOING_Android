@@ -13,9 +13,9 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.moing.R;
-import com.example.moing.Request.AlarmRequest;
-import com.example.moing.Response.AlarmResponse;
-import com.example.moing.Response.AlarmSettingResponse;
+import com.example.moing.request.AlarmRequest;
+import com.example.moing.response.AlarmResponse;
+import com.example.moing.response.AlarmSettingResponse;
 import com.example.moing.retrofit.ChangeJwt;
 import com.example.moing.retrofit.RetrofitAPI;
 import com.example.moing.retrofit.RetrofitClientJwt;

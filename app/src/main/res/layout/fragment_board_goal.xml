@@ -393,8 +393,8 @@
                 android:textColor="@color/secondary_grey_black_4"
                 android:fontFamily="@font/pretendard_semi_bold"
                 android:drawableRight="@drawable/arrow_right"
-                android:paddingLeft="100dp"
-                android:paddingRight="100dp"
+                android:paddingLeft="80dp"
+                android:paddingRight="80dp"
                 />
 
 

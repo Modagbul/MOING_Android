@@ -9,8 +9,8 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.moing.R;
-import com.example.moing.Response.BoardNoReadNoticeResponse;
-import com.example.moing.Response.BoardNoReadVoteResponse;
+import com.example.moing.response.BoardNoReadNoticeResponse;
+import com.example.moing.response.BoardNoReadVoteResponse;
 
 import java.util.List;
 

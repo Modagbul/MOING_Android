@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    tools:context=".board.NoticeDeleteFragment"
+    tools:context=".board.notice.NoticeDeleteFragment"
     android:background="@color/secondary_grey_black_12">
 
     <ImageButton

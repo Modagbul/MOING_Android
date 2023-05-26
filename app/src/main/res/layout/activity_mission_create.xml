@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MissionCreateActivity"
+    tools:context=".mission.MissionCreateActivity"
     android:background="@color/secondary_grey_black_14">
 
     <LinearLayout
@@ -151,7 +151,7 @@
                     android:orientation="horizontal">
 
                     <androidx.constraintlayout.widget.ConstraintLayout
-                        android:layout_width="270dp"
+                        android:layout_width="240dp"
                         android:layout_height="wrap_content">
 
                         <android.widget.Button
@@ -206,7 +206,7 @@
                             android:textAlignment="center"
                             android:textColor="@color/secondary_grey_black_2"
                             android:textColorHint="@color/secondary_grey_black_7"
-                            android:textSize="16dp" />
+                            android:textSize="14dp" />
 
                     </LinearLayout>
 

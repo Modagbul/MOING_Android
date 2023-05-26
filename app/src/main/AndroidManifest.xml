@@ -40,32 +40,32 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".MissionReviseActivity"
+            android:name=".mission.MissionReviseActivity"
             android:exported="false" />
         <activity
-            android:name=".MissionCreateActivity"
+            android:name=".mission.MissionCreateActivity"
             android:exported="false"
             android:windowSoftInputMode="adjustResize" />
         <activity
             android:name=".mission.MissionClickActivity"
             android:exported="true" />
         <activity
-            android:name=".NoticeInfoActivity"
+            android:name=".board.notice.NoticeInfoActivity"
             android:exported="true"
             android:windowSoftInputMode="adjustResize" />
         <activity
-            android:name=".NoticeWriteActivity"
+            android:name=".board.notice.NoticeWriteActivity"
             android:exported="true"
             android:windowSoftInputMode="adjustResize" />
         <activity
-            android:name=".NoticeVoteActivity"
+            android:name=".board.notice.NoticeVoteActivity"
             android:exported="true" />
         <activity
-            android:name=".board.VoteInfoActivity"
+            android:name=".board.vote.VoteInfoActivity"
             android:windowSoftInputMode="adjustResize"
             android:exported="false" />
         <activity
-            android:name=".board.BoardMakeVote"
+            android:name=".board.vote.BoardMakeVote"
             android:exported="true">
             <meta-data
                 android:name="android.app.lib_name"
@@ -142,7 +142,7 @@
             android:name=".login.LoginActivity"
             android:exported="true" />
         <activity
-            android:name=".SplashActivity"
+            android:name=".login.SplashActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

@@ -12,5 +12,6 @@
         android:gravity="center"
         android:textColor="@color/secondary_grey_black_12"
         android:fontFamily="@font/pretendard_semi_bold"
-        android:textSize="16dp" />
+        android:textSize="16dp"
+        android:singleLine="true"/>
 </RelativeLayout>

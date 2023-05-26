@@ -4,8 +4,8 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.util.Log;
 
-import com.example.moing.Request.ChangeJwtRequest;
-import com.example.moing.Response.ChangeJwtResponse;
+import com.example.moing.request.ChangeJwtRequest;
+import com.example.moing.response.ChangeJwtResponse;
 
 import retrofit2.Call;
 import retrofit2.Callback;

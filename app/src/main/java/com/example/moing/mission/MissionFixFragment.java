@@ -9,7 +9,6 @@ import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
-import androidx.fragment.app.Fragment;
 
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -18,11 +17,8 @@ import android.view.ViewGroup;
 import android.view.Window;
 import android.widget.ImageButton;
 
-import com.example.moing.MissionReviseActivity;
 import com.example.moing.R;
-import com.example.moing.Response.MissionInfoResponse;
-import com.example.moing.Response.TeamResponse;
-import com.example.moing.board.BoardFixTeamActivity;
+import com.example.moing.response.MissionInfoResponse;
 import com.example.moing.retrofit.ChangeJwt;
 import com.example.moing.retrofit.RetrofitAPI;
 import com.example.moing.retrofit.RetrofitClientJwt;

@@ -17,12 +17,10 @@ import android.widget.TextView;
 
 import com.example.moing.MainActivity;
 import com.example.moing.R;
-import com.example.moing.Request.RegisterAddressRequest;
-import com.example.moing.Response.RegisterAddressResponse;
-import com.example.moing.retrofit.ChangeJwt;
+import com.example.moing.request.RegisterAddressRequest;
+import com.example.moing.response.RegisterAddressResponse;
 import com.example.moing.retrofit.RetrofitAPI;
 import com.example.moing.retrofit.RetrofitClient;
-import com.example.moing.retrofit.RetrofitClientJwt;
 
 import retrofit2.Call;
 import retrofit2.Callback;

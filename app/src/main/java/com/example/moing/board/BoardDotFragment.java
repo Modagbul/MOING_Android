@@ -16,14 +16,13 @@ import android.view.ViewGroup;
 import android.view.Window;
 import android.widget.ImageButton;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import com.example.moing.R;
-import com.example.moing.Response.InvitationCodeResponse;
-import com.example.moing.Response.TeamResponse;
+import com.example.moing.response.InvitationCodeResponse;
+import com.example.moing.response.TeamResponse;
 import com.example.moing.retrofit.ChangeJwt;
 import com.example.moing.retrofit.RetrofitAPI;
 import com.example.moing.retrofit.RetrofitClientJwt;

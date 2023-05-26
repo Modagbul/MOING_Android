@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".board.VoteInfoActivity"
+    tools:context=".board.vote.VoteInfoActivity"
     android:background="@color/secondary_grey_black_14">
 
     <LinearLayout
@@ -299,6 +299,4 @@
             </LinearLayout>
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>
-    <!-- 댓글 작성 부분 -->
-
 </androidx.constraintlayout.widget.ConstraintLayout>

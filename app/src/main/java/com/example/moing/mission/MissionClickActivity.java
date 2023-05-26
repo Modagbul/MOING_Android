@@ -33,15 +33,13 @@ import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
 import com.davemorrissey.labs.subscaleview.ImageSource;
 import com.davemorrissey.labs.subscaleview.SubsamplingScaleImageView;
 import com.example.moing.R;
-import com.example.moing.Response.MissionClearResponse;
-import com.example.moing.Response.MissionInfoResponse;
-import com.example.moing.board.BoardMakeVote;
+import com.example.moing.response.MissionClearResponse;
+import com.example.moing.response.MissionInfoResponse;
 import com.example.moing.retrofit.ChangeJwt;
 import com.example.moing.retrofit.RetrofitAPI;
 import com.example.moing.retrofit.RetrofitClientJwt;
 import com.example.moing.s3.ImageUtils;
 import com.example.moing.s3.S3Utils;
-import com.example.moing.team.MakeTeamActivity3;
 
 import org.json.JSONException;
 import org.json.JSONObject;
