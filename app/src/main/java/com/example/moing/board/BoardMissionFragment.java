@@ -20,24 +20,19 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
-import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.moing.R;
-import com.example.moing.Response.MoimMasterResponse;
+import com.example.moing.response.MoimMasterResponse;
 import com.example.moing.mission.MissionCreateActivity;
 import com.example.moing.mission.MissionListAdapter;
-import com.example.moing.R;
 import com.example.moing.response.MissionListResponse;
 import com.example.moing.mission.MissionClickActivity;
-import com.example.moing.mypage.MyPageTeamAdatper;
 import com.example.moing.retrofit.ChangeJwt;
 import com.example.moing.retrofit.RetrofitAPI;
 import com.example.moing.retrofit.RetrofitClientJwt;
-import com.example.moing.s3.DownloadImageCallback;
-import com.example.moing.s3.S3Utils;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -231,12 +226,15 @@ public class BoardMissionFragment extends Fragment {
                             @Override
                             public void onItemClick(int pos) {
                                 /** 해당 공지사항으로 이동 **/
-                                Long missionId = missionIdList.get(pos);
-                                Intent intent = new Intent(getContext(), MissionClickActivity.class);
-                                intent.putExtra("teamId", teamId);
-                                intent.putExtra("missionId", missionId);
-                                startActivity(intent);
-
+                                String status= missionList.get(pos).getDueTo();
+                                // -로 시작하지 않는다면
+                                if(!status.startsWith("-")) {
+                                    Long missionId = missionIdList.get(pos);
+                                    Intent intent = new Intent(getContext(), MissionClickActivity.class);
+                                    intent.putExtra("teamId", teamId);
+                                    intent.putExtra("missionId", missionId);
+                                    startActivity(intent);
+                                }
                             }
                         });
                     }

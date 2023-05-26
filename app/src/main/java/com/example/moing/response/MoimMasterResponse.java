@@ -1,4 +1,4 @@
-package com.example.moing.Response;
+package com.example.moing.response;
 
 public class MoimMasterResponse {
     private boolean data;

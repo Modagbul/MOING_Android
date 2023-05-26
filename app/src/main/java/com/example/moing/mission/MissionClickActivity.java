@@ -1,5 +1,7 @@
 package com.example.moing.mission;
 
+import static com.amazonaws.mobile.auth.core.internal.util.ThreadUtils.runOnUiThread;
+
 import androidx.activity.result.ActivityResult;
 import androidx.activity.result.ActivityResultCallback;
 import androidx.activity.result.ActivityResultLauncher;
@@ -33,11 +35,13 @@ import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
 import com.davemorrissey.labs.subscaleview.ImageSource;
 import com.davemorrissey.labs.subscaleview.SubsamplingScaleImageView;
 import com.example.moing.R;
+import com.example.moing.board.vote.VoteInfoActivity;
 import com.example.moing.response.MissionClearResponse;
 import com.example.moing.response.MissionInfoResponse;
 import com.example.moing.retrofit.ChangeJwt;
 import com.example.moing.retrofit.RetrofitAPI;
 import com.example.moing.retrofit.RetrofitClientJwt;
+import com.example.moing.s3.DownloadImageCallback;
 import com.example.moing.s3.ImageUtils;
 import com.example.moing.s3.S3Utils;
 
@@ -73,6 +77,7 @@ public class MissionClickActivity extends AppCompatActivity {
     private static final String JWT_ACCESS_TOKEN = "JWT_access_token";
     private SharedPreferences sharedPreferences;
     private Long teamId, missionId;
+    private Context context;
 
     private Call<MissionInfoResponse> missionInfoResponseCall;
 
@@ -297,7 +302,8 @@ public class MissionClickActivity extends AppCompatActivity {
                         String response_dDay = infoResponse.getData().getDueTo();
                         String response_rule = infoResponse.getData().getRule();
                         String response_status = infoResponse.getData().getStatus();
-
+                        String response_archive = infoResponse.getData().getAchieve();
+                        
                         // 값 전달
                         title1.setText(response_title);
                         title2.setText(response_title);
@@ -380,7 +386,7 @@ public class MissionClickActivity extends AppCompatActivity {
 
                             curState.setTextColor(ContextCompat.getColor(MissionClickActivity.this, R.color.secondary_grey_black_1));
                             curState.setText("인증 완료!");
-                            setVisible();
+                            setVisible("COMPLETE");
                         }
                     }
                 }
@@ -423,7 +429,7 @@ public class MissionClickActivity extends AppCompatActivity {
 
         curState.setTextColor(ContextCompat.getColor(MissionClickActivity.this, R.color.secondary_grey_black_1));
         curState.setText("인증 완료!");
-        setVisible();
+        setVisible("COMPLETE");
     }
 
     private void changeIncomPlete() {
@@ -441,20 +447,26 @@ public class MissionClickActivity extends AppCompatActivity {
 
         curState.setTextColor(ContextCompat.getColor(MissionClickActivity.this, R.color.sub_dark_1));
         curState.setText("이번 미션을 건너뛰었어요");
-        setVisible();
+        setVisible("PENDING");
         smile.setVisibility(View.INVISIBLE);
     }
 
     /** 인증성공, 건너뛰기 시 가시성 설정 **/
-    private void setVisible() {
+    private void setVisible(String status) {
         // Visibility 설정
-        // visibility 설정
-        picture.setVisibility(View.GONE);
         fix.setVisibility(View.GONE);
         reason.setVisibility(View.GONE);
         mission.setVisibility(View.GONE);
         across.setVisibility(View.GONE);
-        smile.setVisibility(View.VISIBLE);
         title2.setPaintFlags(title2.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
+
+        if(status.equals("PENDING")) {
+            picture.setVisibility(View.GONE);
+            smile.setVisibility(View.INVISIBLE);
+        }
+        else {
+            picture.setVisibility(View.VISIBLE);
+            smile.setVisibility(View.VISIBLE);
+        }
     }
 }
