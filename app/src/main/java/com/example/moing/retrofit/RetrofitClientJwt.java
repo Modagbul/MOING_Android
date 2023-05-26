@@ -21,7 +21,7 @@ public class RetrofitClientJwt {
     private static Retrofit retrofit = null;
 
     public static Retrofit getInstance(final String token) {
-        if (retrofit == null) {
+
             HttpLoggingInterceptor loggingInterceptor = new HttpLoggingInterceptor();
             loggingInterceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
 
@@ -48,7 +48,7 @@ public class RetrofitClientJwt {
                     .addConverterFactory(ScalarsConverterFactory.create())
                     .client(clientBuilder.build())
                     .build();
-        }
+
         return retrofit;
     }
 
