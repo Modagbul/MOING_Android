@@ -1,5 +1,6 @@
 package com.example.moing.retrofit;
 
+import com.example.moing.Response.MoimMasterResponse;
 import com.example.moing.request.AlarmRequest;
 import com.example.moing.request.BoardMakeVoteRequest;
 import com.example.moing.request.BoardVoteDoRequest;
