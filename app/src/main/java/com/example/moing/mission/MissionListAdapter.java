@@ -80,13 +80,13 @@ public class MissionListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
         } else {
             // 값이 음수가 아닌 경우 처리
             if (item.getStatus().equals("COMPLETE")) {
-                vh.btn_check.setBackgroundResource(R.drawable.mission_success);
+                vh.btn_check.setBackgroundResource(R.drawable.success_badge);
                 vh.tv_title.setPaintFlags(vh.tv_title.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
                 vh.tv_title.setTextColor(Color.parseColor("#959698"));
                 vh.tv_date.setPaintFlags(vh.tv_date.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
                 vh.tv_date.setTextColor(Color.parseColor("#959698"));
             } else if (item.getStatus().equals("PENDING")){
-                vh.btn_check.setBackgroundResource(R.drawable.success_badge);
+                vh.btn_check.setBackgroundResource(R.drawable.mission_success);
                 vh.tv_title.setPaintFlags(vh.tv_title.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
                 vh.tv_title.setTextColor(Color.parseColor("#959698"));
                 vh.tv_date.setTextColor(Color.parseColor("#959698"));

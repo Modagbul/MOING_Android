@@ -29,13 +29,15 @@ public class MissionInfoResponse {
         private String content;
         private String rule;
         private String status;
+        private String achieve;
 
-        public MissionData(String title, String dueTo, String content, String rule, String status) {
+        public MissionData(String title, String dueTo, String content, String rule, String status, String achieve) {
             this.title = title;
             this.dueTo = dueTo;
             this.content = content;
             this.rule = rule;
             this.status = status;
+            this.achieve = achieve;
         }
 
         public String getTitle() {
@@ -56,6 +58,10 @@ public class MissionInfoResponse {
 
         public String getStatus() {
             return status;
+        }
+
+        public String getAchieve() {
+            return achieve;
         }
     }
 }

@@ -226,12 +226,15 @@ public class BoardMissionFragment extends Fragment {
                             @Override
                             public void onItemClick(int pos) {
                                 /** 해당 공지사항으로 이동 **/
-                                Long missionId = missionIdList.get(pos);
-                                Intent intent = new Intent(getContext(), MissionClickActivity.class);
-                                intent.putExtra("teamId", teamId);
-                                intent.putExtra("missionId", missionId);
-                                startActivity(intent);
-
+                                String status= missionList.get(pos).getDueTo();
+                                // -로 시작하지 않는다면
+                                if(!status.startsWith("-")) {
+                                    Long missionId = missionIdList.get(pos);
+                                    Intent intent = new Intent(getContext(), MissionClickActivity.class);
+                                    intent.putExtra("teamId", teamId);
+                                    intent.putExtra("missionId", missionId);
+                                    startActivity(intent);
+                                }
                             }
                         });
                     }
