@@ -13,6 +13,7 @@ import android.graphics.drawable.GradientDrawable;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
@@ -40,6 +41,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class MissionCreateActivity extends AppCompatActivity {
+    private static final String TAG = "MissionCreateActivity";
 
     private RetrofitAPI apiService;
     private static final String PREF_NAME = "Token";
@@ -112,9 +114,7 @@ public class MissionCreateActivity extends AppCompatActivity {
         xIcon.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
                 et_title.setText(null);
-
             }
         });
 
@@ -182,12 +182,14 @@ public class MissionCreateActivity extends AppCompatActivity {
                                 } else {
                                     hour = String.valueOf(hourOfDay);
                                 }
+
                                 String min = "";
                                 if (minute < 10) {
-                                    min = "0" + String.valueOf(min);
+                                    min = "0" + String.valueOf(minute);
                                 } else {
                                     min = String.valueOf(minute);
                                 }
+
                                 String selectedTime = hour+":"+min;
                                 et_time.setText(selectedTime);
                             }

@@ -20,24 +20,19 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
-import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.moing.R;
-import com.example.moing.Response.MoimMasterResponse;
+import com.example.moing.response.MoimMasterResponse;
 import com.example.moing.mission.MissionCreateActivity;
 import com.example.moing.mission.MissionListAdapter;
-import com.example.moing.R;
 import com.example.moing.response.MissionListResponse;
 import com.example.moing.mission.MissionClickActivity;
-import com.example.moing.mypage.MyPageTeamAdatper;
 import com.example.moing.retrofit.ChangeJwt;
 import com.example.moing.retrofit.RetrofitAPI;
 import com.example.moing.retrofit.RetrofitClientJwt;
-import com.example.moing.s3.DownloadImageCallback;
-import com.example.moing.s3.S3Utils;
 
 import org.json.JSONException;
 import org.json.JSONObject;
