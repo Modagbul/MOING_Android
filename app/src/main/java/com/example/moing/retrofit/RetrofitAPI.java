@@ -255,4 +255,7 @@ public interface RetrofitAPI {
     @PUT("api/v1/{teamId}/missions/{missionId}")
     Call<MissionUpdateResponse> putMissionUpdate(@Header("Authorization") String token, @Path("teamId") Long teamId, @Path("missionId") Long missionId, @Body MissionUpdateRequest missionUpdateRequest);
 
+    /** 리더 상태 조회 **/
+    @GET("/api/v1/{teamId}/missions/isLeader")
+    Call<MoimMasterResponse> checkIsMoimMaster(@Header("Authorization") String token, @Path("teamId") Long teamId);
 }
